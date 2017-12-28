@@ -1,3 +1,5 @@
+# Show the Data in shardId-000000000000 in plain text 
+
 STREAM=`aws kinesis list-streams | grep '        "'|tr -d '        "'`
 ITERATOR=$(aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON --stream-name $STREAM | tr -d '{}" ' |sed "s/ShardIterator//g" )
 # echo $ITERATOR
