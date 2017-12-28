@@ -1,3 +1,8 @@
 ITERATOR=$(aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shard-iterator-type TRIM_HORIZON --stream-name TempStream2 | tr -d '{}" ' |sed "s/ShardIterator//g" )
 echo $ITERATOR
-aws kinesis get-records --shard-iterator $ITERATOR | grep Data
+DATA=$(aws kinesis get-records --shard-iterator $ITERATOR | grep Data |  tr -d ' ",:' |sed "s/Data//g")
+for entry in $DATA
+do
+	echo -e $entry | base64 --decode
+	echo ""
+done
