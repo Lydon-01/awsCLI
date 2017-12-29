@@ -9,6 +9,8 @@
 echo  "$(tput setaf 2)Which Shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
 read SHARD_LAST_NUM
 SHARD_ID=shardId-00000000000$SHARD_LAST_NUM # Correctly save the ShardID choice.
+echo  "$(tput setaf 2)And how many lines of data do you want to see? (1-Zillion)
+read $OUT_NUM
 echo  "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
 echo ""
 
@@ -27,11 +29,15 @@ ITERATOR=$(aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shar
 DATA=$(aws kinesis get-records --shard-iterator $ITERATOR | grep Data |  tr -d ' ",:' |sed "s/Data//g")
 
 # List all the decoded data
-for entry in $DATA
-do
-	echo -e $entry | base64 --decode
-	echo ""
-done
+X=1
+while X<=$OUT_NUM 
+do 
+	for entry in $DATA
+	do
+		echo -e $entry | base64 --decode
+		echo ""
+		$X++
+	done
 echo --------------
 echo "$(tput setaf 2)All done :D$(tput sgr0)"
 echo --------------
