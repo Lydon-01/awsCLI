@@ -4,7 +4,6 @@
 #1 Fix Word3 to have a bigger data entry
 #2 Better understand the partition key and how to use it correctly
 #3 
-#4 
 
 # Function for the randomWord
 randomWord(){
@@ -33,11 +32,11 @@ do
 
         echo $N key1 word: $WORD1
         aws kinesis put-record --stream-name $STREAM --partition-key 1 --data $WORD1
-        echo $N key2 word: $WORD1
+        echo $N key2 word: $WORD2
         aws kinesis put-record --stream-name $STREAM --partition-key 2 --data $WORD2 
         ## Word3 feature coming soon.
-        #echo $WORD3
-        #aws kinesis put-record --stream-name $STREAM --partition-key 2 --data $WORD3
+        #echo $N key2 word: $WORD3
+        #aws kinesis put-record --stream-name $STREAM --partition-key 3 --data $WORD3
 
         echo "$(tput setaf 2)$N Done$(tput sgr0)"
         echo "-----"
