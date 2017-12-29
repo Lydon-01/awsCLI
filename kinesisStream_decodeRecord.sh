@@ -1,4 +1,4 @@
-## Show the Data in a shard in plain text ##
+## Show the Decoded Data in a shard ##
 
 ## Things to be improved:
 #1 Add an Ask for the Iterator type
@@ -6,13 +6,14 @@
 #3 
 
 # Ask which Shard
-echo  "$(tput setaf 2)Sup kid. Which shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
+echo  "$(tput setaf 2)Which Shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
 read $SHARD_LAST_NUM
-SHARD_ID=shardId-00000000000$SHARD_LAST_NUM
-echo  "$(tput setaf 2)Cool, checking out data on SHARD_ID.$(tput sgr0)"
+SHARD_ID=shardId-00000000000$SHARD_LAST_NUM # Correctly save the ShardID choice.
+echo ""
+echo  "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
 echo ""
 
-$ What type of Iterator type?
+$ Ask Iterator type
 ## Ask coming soon.
 TYPE=TRIM_HORIZON
 
@@ -25,6 +26,7 @@ ITERATOR=$(aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shar
 
 DATA=$(aws kinesis get-records --shard-iterator $ITERATOR | grep Data |  tr -d ' ",:' |sed "s/Data//g")
 
+# List all the decoded data
 for entry in $DATA
 do
 	echo -e $entry | base64 --decode
