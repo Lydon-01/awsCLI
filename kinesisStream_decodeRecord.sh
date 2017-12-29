@@ -2,7 +2,7 @@
 
 ## Things to be improved:
 #1 Add an Ask for the Iterator type
-#2 
+#2 Add a section for specifying or indicating the key on the data
 #3 
 
 # Ask which Shard
@@ -12,17 +12,18 @@ SHARD_ID=shardId-00000000000$SHARD_LAST_NUM # Correctly save the ShardID choice.
 echo  "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
 echo ""
 
-$ Ask Iterator type
+# Ask Iterator type
 ## Ask coming soon.
 TYPE=TRIM_HORIZON
 
 # Kinesis Data Stream as a variable. Only works well when there is one. 
 STREAM=`aws kinesis list-streams | grep '        "'|tr -d '        "'`
 
-# Saves the Iterator Name of the shard
+# Gets the Iterator Name of the previously specified shard
 ITERATOR=$(aws kinesis get-shard-iterator --shard-id shardId-000000000000 --shard-iterator-type $TYPE --stream-name $STREAM | tr -d '{}" ' |sed "s/ShardIterator//g" )
 # echo $ITERATOR
 
+# Now get the data from the shard, clean up the unwanted text
 DATA=$(aws kinesis get-records --shard-iterator $ITERATOR | grep Data |  tr -d ' ",:' |sed "s/Data//g")
 
 # List all the decoded data
@@ -30,4 +31,7 @@ for entry in $DATA
 do
 	echo -e $entry | base64 --decode
 	echo ""
+	echo ----------
+	echo"$(tput setaf 2) All done :D$(tput sgr0)"
+	echo ----------
 done
