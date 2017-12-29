@@ -6,12 +6,12 @@
 #3 
 
 # Ask which Shard
-echo  "$(tput setaf 2)Which Shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
+echo "$(tput setaf 2)Which Shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
 read SHARD_LAST_NUM
 SHARD_ID=shardId-00000000000$SHARD_LAST_NUM # Correctly save the ShardID choice.
-echo  "$(tput setaf 2)And how many lines of data do you want to see? (1-Zillion)
+echo "$(tput setaf 2)And how many lines of data do you want to see? (1-Zillion)$(tput sgr0)"
 read $OUT_NUM
-echo  "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
+echo "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
 echo ""
 
 # Ask Iterator type
