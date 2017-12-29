@@ -7,10 +7,9 @@
 
 # Ask which Shard
 echo  "$(tput setaf 2)Which Shard are we checking out? Give just the last number (0-999)$(tput sgr0)"
-read $SHARD_LAST_NUM
+read SHARD_LAST_NUM
 echo $SHARD_LAST_NUM
 SHARD_ID=shardId-00000000000$SHARD_LAST_NUM # Correctly save the ShardID choice.
-echo ""
 echo  "$(tput setaf 2)Cool, checking out data on $SHARD_ID.$(tput sgr0)"
 echo ""
 
