@@ -32,6 +32,6 @@ do
 	echo -e $entry | base64 --decode
 	echo ""
 done
-echo ----------
+echo --------------
 echo "$(tput setaf 2)All done :D$(tput sgr0)"
-echo ----------
+echo --------------
