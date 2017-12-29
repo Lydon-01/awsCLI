@@ -38,6 +38,7 @@ do
 		echo ""
 		$X++
 	done
+done
 echo --------------
 echo "$(tput setaf 2)All done :D$(tput sgr0)"
 echo --------------
