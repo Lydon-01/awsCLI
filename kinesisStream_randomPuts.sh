@@ -16,6 +16,7 @@ STREAM=`aws kinesis list-streams | grep '        "'|tr -d '        "'`
 
 
 # How many puts? 
+echo ""
 echo "$(tput setaf 2)$N Yo! How many Put-Records would you like to do per partiiton-key?$(tput sgr0)"
 read COUNT
 echo "$(tput setaf 2)$N Okay. Doing $COUNT Put-Records into Stream $STREAM.$(tput sgr0)"
@@ -30,9 +31,9 @@ do
         ## Word3 feature coming soon.
         #WORD3="$(randomWord) $(randomWord) $(randomWord)  $(randomWord) $(randomWord) $(randomWord)"
 
-        echo "$(tput setaf 9)Key1 Put-Record number $N is $WORD2 $(tput sgr0)"
+        echo "$(tput setaf 9)$N key1 word: $WORD1$(tput sgr0)"
         aws kinesis put-record --stream-name $STREAM --partition-key 1 --data $WORD1
-        echo "$(tput setaf 9)Key2 Put-Record number $N is $WORD2 $(tput sgr0)"
+        echo "$(tput setaf 9)$N key1 word: $WORD1$(tput sgr0)"
         aws kinesis put-record --stream-name $STREAM --partition-key 2 --data $WORD2 
         ## Word3 feature coming soon.
         #echo $WORD3
