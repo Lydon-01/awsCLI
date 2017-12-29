@@ -33,13 +33,14 @@ do
 
         echo "$(tput setaf 9)$N key1 word: $WORD1$(tput sgr0)"
         aws kinesis put-record --stream-name $STREAM --partition-key 1 --data $WORD1
-        echo "$(tput setaf 9)$N key1 word: $WORD1$(tput sgr0)"
+        echo "$(tput setaf 9)$N key2 word: $WORD1$(tput sgr0)"
         aws kinesis put-record --stream-name $STREAM --partition-key 2 --data $WORD2 
         ## Word3 feature coming soon.
         #echo $WORD3
         #aws kinesis put-record --stream-name $STREAM --partition-key 2 --data $WORD3
-        
+
         echo "$(tput setaf 2)$N Done$(tput sgr0)"
+        echo "-----"
         ((N++))
 done
 echo All done
