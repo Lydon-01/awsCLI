@@ -44,3 +44,4 @@ do
         ((N++))
 done
 echo "All done :)"
+echo "-----"
