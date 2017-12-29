@@ -30,7 +30,7 @@ DATA=$(aws kinesis get-records --shard-iterator $ITERATOR | grep Data |  tr -d '
 
 # List all the decoded data
 X=1
-while [ $X -le $OUT_NUM ]
+while [[ $X -le $OUT_NUM ]]
 do 
 	for entry in $DATA
 	do
