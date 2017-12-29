@@ -31,7 +31,7 @@ for entry in $DATA
 do
 	echo -e $entry | base64 --decode
 	echo ""
-	echo ----------
-	echo"$(tput setaf 2) All done :D$(tput sgr0)"
-	echo ----------
 done
+echo ----------
+echo "$(tput setaf 2)All done :D$(tput sgr0)"
+echo ----------
