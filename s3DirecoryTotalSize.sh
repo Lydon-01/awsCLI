@@ -5,8 +5,8 @@
 # example: s3://my_bucket/big_folder/
 S3_DIR='s3://*YOUR_BUCKET/KEY*'
 
-# Get the total size
-aws s3 ls $S3_DIR --summarize --recursive | grep "Total Size" | grep "Total Size"
+# Get the total objects and size
+aws s3 ls $S3_DIR --summarize --recursive | grep "Total"
 
 # Convert total size to MB and GB. And print
 RAW_SIZE=`aws s3 ls $S3_DIR --summarize --recursive | grep "Total Size" | cut -f 6 -d ' '`
