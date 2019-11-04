@@ -1,0 +1,20 @@
+##################################################
+## Linux CLI commands for creating files OR syncing from S3. 
+## Then checking their size before and after compressing.
+#
+## These commands can be put into a .sh script, but are 
+# currently ready to run straight on the command line
+##################################################
+
+
+## DD OPTION:
+# Create folder size_test and inside it create a 5 x 10MB files. Check size 
+mkdir size_test; cd size_test/; for i in $(seq 1 5); do dd if=/dev/zero of=file$i.txt count=10024 bs=1024; done; cd ..; du -sh size_test
+
+## S3Sync OPTION:
+# Create folder size_test and sync files from S3:
+mkdir size_test; cd size_test/; aws s3 sync s3://lydon-glue/temp/ . ; cd ..; du -sh size_test/
+
+# FOR BOTH:
+# Compress files and check size again 
+cd size_test/; for i in $(ls); do gzip $i; done; cd ..; du -sh size_test/
