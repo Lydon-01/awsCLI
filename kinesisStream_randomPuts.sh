@@ -16,7 +16,7 @@ STREAM=`aws kinesis list-streams | grep '        "'|tr -d '        "'`
 
 # How many puts? 
 echo ""
-echo "$(tput setaf 2) How many Put-Records would you like to \do?$(tput sgr0)"
+echo "$(tput setaf 2)How many Put-Records would you like to do?$(tput sgr0)"
 read COUNT
 echo "$(tput setaf 2)Okay. Doing $COUNT Put-Records into Stream $STREAM.$(tput sgr0)"
 echo ""
