@@ -1,0 +1,14 @@
+#!/bin/bash
+# Script to add random LF Tags for testing. 
+
+
+# Add LF Tag with Random Key and Random Value. 
+# You can modify the number of tags to create.
+for value in {1..100}
+do
+	RANDOMWORD=$(shuf -n1 /usr/share/dict/words)
+	ADDLFTAG=$(aws lakeformation create-lf-tag --tag-key $RANDOMWORD --tag-values $RANDOM)
+	$ADDLFTAG
+	echo "Successful Creation"
+done
+
