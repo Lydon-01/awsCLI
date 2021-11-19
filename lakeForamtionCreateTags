@@ -9,6 +9,6 @@ do
 	RANDOMWORD=$(shuf -n1 /usr/share/dict/words)
 	ADDLFTAG=$(aws lakeformation create-lf-tag --tag-key $RANDOMWORD --tag-values $RANDOM)
 	$ADDLFTAG
-	echo "Successful Creation"
+	echo "Creation Attempt Complete"
 done
 
